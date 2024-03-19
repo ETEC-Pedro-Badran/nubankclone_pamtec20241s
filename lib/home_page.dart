@@ -9,20 +9,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Conta",
-                  style: GoogleFonts.nunito(
-                      fontSize: 20, fontWeight: FontWeight.w600)),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 12,
-              )
-            ],
-          ),
+        body: Column(
+          children: [saldoConta(), opcoesConta()],
         ));
   }
 
@@ -73,6 +61,60 @@ class HomePage extends StatelessWidget {
               ),
             ],
           )),
+    );
+  }
+
+  saldoConta() {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Conta",
+                  style: GoogleFonts.nunito(
+                      fontSize: 20, fontWeight: FontWeight.w600)),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 12,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
+            children: [
+              Text("R\$ 1832,55",
+                  style: GoogleFonts.notoSans(
+                      fontSize: 25, fontWeight: FontWeight.w700)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  opcoesConta() {
+    return SizedBox(
+      height: 150,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          opcao("PIX", Icons.pix_outlined),
+          opcao("Pagar", Icons.qr_code),
+          opcao("Transferir", Icons.monetization_on),
+          opcao("Depositar", Icons.money_outlined),
+          opcao("Empréstimo", Icons.splitscreen)
+        ],
+      ),
+    );
+  }
+
+  opcao(String texto, IconData icone) {
+    return Column(
+      children: [CircleAvatar(child: Icon(icone)), Text(texto)],
     );
   }
 }
