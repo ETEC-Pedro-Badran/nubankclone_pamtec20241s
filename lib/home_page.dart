@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: appBar(),
         body: Column(
-          children: [saldoConta(), opcoesConta()],
+          children: [saldoConta(), opcoesConta(), meusCartoes()],
         ));
   }
 
@@ -97,24 +97,66 @@ class HomePage extends StatelessWidget {
   }
 
   opcoesConta() {
-    return SizedBox(
-      height: 150,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          opcao("PIX", Icons.pix_outlined),
-          opcao("Pagar", Icons.qr_code),
-          opcao("Transferir", Icons.monetization_on),
-          opcao("Depositar", Icons.money_outlined),
-          opcao("Empréstimo", Icons.splitscreen)
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0),
+      child: SizedBox(
+        height: 120,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            opcao("PIX", Icons.pix_outlined),
+            opcao("Pagar", Icons.qr_code),
+            opcao("Transferir", Icons.monetization_on),
+            opcao("Depositar", Icons.money_outlined),
+            opcao("Empréstimo", Icons.splitscreen)
+          ],
+        ),
       ),
     );
   }
 
   opcao(String texto, IconData icone) {
-    return Column(
-      children: [CircleAvatar(child: Icon(icone)), Text(texto)],
+    return Padding(
+      padding: const EdgeInsets.only(right: 20.0),
+      child: Column(
+        children: [
+          Container(
+              width: 63,
+              height: 63,
+              decoration: BoxDecoration(
+                  color: Colors.grey[300], shape: BoxShape.circle),
+              child: Icon(icone)),
+          Text(texto)
+        ],
+      ),
+    );
+  }
+
+  meusCartoes() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0),
+      child: Row(
+        children: [
+          Container(
+              height: 60,
+              width: 450,
+              decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(8)),
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Icon(Icons.credit_card),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("Meus cartões")
+                  ],
+                ),
+              ))
+        ],
+      ),
     );
   }
 }
