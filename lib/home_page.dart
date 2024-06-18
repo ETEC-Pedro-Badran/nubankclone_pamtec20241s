@@ -10,7 +10,12 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: appBar(),
         body: Column(
-          children: [saldoConta(), opcoesConta(), meusCartoes()],
+          children: [
+            saldoConta(),
+            opcoesConta(),
+            meusCartoes(),
+            notificacoes()
+          ],
         ));
   }
 
@@ -157,6 +162,42 @@ class HomePage extends StatelessWidget {
               ))
         ],
       ),
+    );
+  }
+
+  notificacoes() {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Container(
+            height: 85,
+            width: 320,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.grey[300],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                  child: RichText(
+                      text: TextSpan(
+                          style: GoogleFonts.nunito(
+                              fontSize: 16, fontWeight: FontWeight.w600),
+                          children: [
+                    const TextSpan(
+                        text: "Você tem R\$ 20.000,00\ndisponíveis para "),
+                    TextSpan(
+                        text: "empréstimo.",
+                        style: GoogleFonts.nunito(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.purple)),
+                  ]))),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
